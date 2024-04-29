@@ -159,10 +159,10 @@ public class ZoomLayout extends FrameLayout {
      */
     @Override
     public ViewParent invalidateChildInParent(int[] location, Rect dirty) {
-        scaledPointsToScreenPoints(dirty);
-        float scale = getScale();
-        location[0] *= scale;
-        location[1] *= scale;
+//        scaledPointsToScreenPoints(dirty);
+//        float scale = getScale();
+//        location[0] *= scale;
+//        location[1] *= scale;
         return super.invalidateChildInParent(location, dirty);
     }
 
@@ -199,6 +199,10 @@ public class ZoomLayout extends FrameLayout {
         return super.dispatchTouchEvent(ev);
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return mAllowZoom;
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
